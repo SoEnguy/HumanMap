@@ -62,23 +62,31 @@
 		  });
 
 
-		  
-
- 
-
-		  var featureOpts = [
+		  var styles = [
 		  {
-		  stylers: [{ visibility: 'simplified' }]
-		  },];
-
-
-		  var styledMapOptions = {
-		  name: 'Custom Style'
-		  };
+		  stylers: [
+		  { hue: "#00ffe6" },
+		  { saturation: -20 }
+		  ]
+		  },{
+		  featureType: "road",
+		  elementType: "geometry",
+		  stylers: [
+		  { lightness: 100 },
+		  { visibility: "simplified" }
+		  ]
+		  },{
+		  featureType: "road",
+		  elementType: "labels",
+		  stylers: [
+		  { visibility: "off" }
+		  ]
+		  }
+		  ];
 		  
-		  var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
-
-		  map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+ 
+		  
+		  map.setOptions({styles: styles});
 
 
 
