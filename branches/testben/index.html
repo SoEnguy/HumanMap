@@ -21,7 +21,6 @@
 			};
 			var map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
-		  }
 		  var populationOptions = {
 		  strokeColor: '#FF0000',
 		  strokeOpacity: 0.8,
@@ -33,6 +32,7 @@
 		  radius:  500
 		  };
 		  cityCircle = new google.maps.Circle(populationOptions);
+		  }
 		  google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 
