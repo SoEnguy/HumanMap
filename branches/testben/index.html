@@ -64,18 +64,48 @@
 
 		  var styles = [
 		  {
-		  stylers: [
-		  { hue: "#00ffe6" },
-		  { saturation: -20 }
-		  ]
-		  },{
 		  featureType: "road",
 		  elementType: "geometry",
 		  stylers: [
 		  { lightness: 100 },
 		  { visibility: "simplified" }
 		  ]
-		  },{
+		  },
+		  {
+		  featureType: "administrative",
+		  stylers: [
+		  { visibility: "simplified" }
+		  ]
+		  },
+
+
+		  {
+		  featureType: "all",
+		  stylers: [
+		  { lightness: 100 },
+		  { visibility: "simplified" }
+		  ]
+		  }
+
+
+		  {
+		  featureType: "poi",
+		  stylers: [
+		  { visibility: "off" }
+		  ]
+		  }
+
+
+		   {
+		  featureType: "poi.medical",
+		  stylers: [
+		  { visibility: "on" }
+		  ]
+		  }
+
+
+		  
+		  {
 		  featureType: "road",
 		  elementType: "labels",
 		  stylers: [
