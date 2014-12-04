@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation</title>
     <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="stylesheets/modif.css">
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
   <body>
@@ -21,31 +22,32 @@
        <ul class="left">
          <li><a href="#">Accueil</a></li>
          <li><a href="#">Position actuelle</a></li>
-         <li><a href="#">Continents</a></li>
+         <li class="has-dropdown"><a href="#">Continents</a>
+            <ul class="dropdown">
+              <li><a href="#">Afrique</a></li>
+              <li><a href="#">Europe</a></li>
+              <li><a href="#">Amérique</a></li>
+              <li><a href="#">Asie</a></li>
+              <li><a href="#">Océanie</a></li>
+            </ul>
+         </li>
          <li><a href="#">FAQ</a></li>
        </ul>
 
        <ul class="right">
-         <li class="active"><a href="#">Right Nav Button Active</a></li>
-         <li class="has-dropdown">
-           <a href="#">Right Button with Dropdown</a>
-           <ul class="dropdown">
-             <li><a href="#">First link in dropdown</a></li>
-           </ul>
-         </li>
+         
        </ul>
    
        <!-- Left Nav Section -->
 
      </section>
    </nav>
-      
-    </div>
+    <!-- ************************ Body *********************************** -->
+       </div>
+       <div id="map-canvas"></div>
     <div class="row">
       <div class="small-24 medium-16 large-10 columns medium-centered large-uncentered panel"></div>
       </div>
-    <!-- ************************ Body *********************************** -->
-   
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
