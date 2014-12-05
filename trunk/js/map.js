@@ -1,8 +1,6 @@
 function initialize() {
-
 		var map;
-
-      	//FIRST MAP
+      	//MAP OPTIONS
         var mapOptions = {
 			maxZoom: 12,
 			minZoom: 4,
@@ -11,26 +9,35 @@ function initialize() {
 			panControl: true,
 			scrollwheel: true,
 			streetViewControl: false,
-			mapTypeId: "hybrid"
+			mapTypeId: "roadmap"
         };
 		
 		// GEOLOCALISATION
 		  if(navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function(position) {
-				  pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				 // var pos = new google.maps.LatLng(50, 50);
-
+				
+				  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				  
 				  var infowindow = new google.maps.InfoWindow({
 					map: map,
 					position: pos//,
-					//content: '{'+position.coords.latitude+','+position.coords.longitude+'}'
 				  });
 				  
 				  var marker = new google.maps.Marker({
 					  position: pos,
 					  map: map,
 					  title: 'Your current position'
-				  });		
+				  });	
+
+				google.maps.event.addListener(map, 'zoom_changed', function(event){
+					var zoomActu = map.getZoom();
+					if (zoomActu >= 6) {
+						$('#content').show(200);
+					} else if (zoomActu < 6) {
+						$('#content').hide(200);
+					}
+				});	
+				  	
 				  map.setCenter(pos);
 				}, function() {
 				  handleNoGeolocation(true);
@@ -57,8 +64,6 @@ function initialize() {
 			  map.setCenter(options.position);
 			}
 
-		 
-        
         //POSITION AFRIQUE
         var myLatlngAf = new google.maps.LatLng(5.233345, 30.463906);
         //POSITION EUROPE
@@ -72,6 +77,56 @@ function initialize() {
         
         //LOAD MAP
          map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+
+         //Application des styles à la map
+         var styles = [
+			{
+			    featureType: "all",
+			    stylers: [
+				{ lightness: -20 },
+			    ]
+			},
+			{
+			    featureType: "road",
+			    elementType: "geometry",
+			    stylers: [
+				{ visibility: "simplified" }
+			    ]
+			},
+			{
+			    featureType: "administrative",
+			    stylers: [
+				{ visibility: "simplified" }
+			    ]
+			},
+			
+			{
+			    featureType: "poi",
+			    stylers: [
+				{ visibility: "off" }
+			    ]
+			},
+			{
+			    featureType: "poi.medical",
+			    stylers: [
+				{ visibility: "on" }
+			    ]
+			},
+
+			{
+			    featureType: "road",
+			    elementType: "labels",
+			    stylers: [
+				{visibility: "off"}
+				  ]
+			}
+		    ];		  		  
+		    map.setOptions({styles: styles});
+		 
+		 //POSITION ACTUELLE ONCLICK
+		 $('#current').click(function(){
+			map.setCenter(pos);
+		 });
         
         //ZOOM AFRIQUE ONCLICK
         $('#afrique').click(function(){
@@ -102,49 +157,103 @@ function initialize() {
         	map.setZoom(4);
 			map.setCenter(myLatlngOc);
         }).fadeIn(200);
-           
-        //POSITION MARKER
-        var myLatlng = new google.maps.LatLng(52.504540, 11.781136);
-        
-        //CREATE MARKER
-     	var marker = new google.maps.Marker({
-    		position: myLatlng,
-    		map: map,
+
+        genMarkers(map);
+           		
+   	}
+
+   	function genMarkers(map){
+   		var promise = initPromise();
+
+   		promise.done(function(data){
+   			$.each(data.Marker, function(index, element){
+   				drawMarker(map, element.type, element.coordMarker.lat, element.coordMarker.lng, element.info);
+   			});
+   		});
+   	}
+
+   	function drawMarker(map, type, lat, lng, info){
+	    latLng = new google.maps.LatLng(lat,lng);
+	    var icon = new google.maps.MarkerImage(
+			"../image/"+type+".png",
+			null, /* size is determined at runtime */
+			null, /* origin is 0,0 */
+			null, /* anchor is bottom center of the scaled image */
+			new google.maps.Size(40, 40)
+	    ); 
+		
+	    var mark = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			icon : icon
+	    });
+	    
+		$("#content").html(info);
+
+	    google.maps.event.addListener(mark, 'click', function() {
+			zoomMarker(map, mark);
+	    });
+	}
+
+   	//Fonction d'haversine permettant le calcul de distance
+	var rad = function(x) {
+	  return x * Math.PI / 180;
+	};
+	
+   	var getDistance = function(p1, p2) {
+	  	var R = 6378137, // Earth’s mean radius in meter
+	  		dLat = rad(p2.lat() - p1.lat()),
+	  		dLong = rad(p2.lng() - p1.lng()),
+	  		a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) * Math.sin(dLong / 2) * Math.sin(dLong / 2),
+	  		c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
+	  		d = R * c;
+	  return d; // returns the distance in meter
+	};
+
+	//google.maps.event.addDomListener(window, 'load', initialize);
+	
+	function loadScript() {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+		  'callback=initialize';
+		document.body.appendChild(script);
+	}
+
+	//ZOOM ON MARKER
+	function zoomMarker(map, marker){
+		
+		map.panTo(marker.getPosition());
+		smoothZoom(map, 7, map.getZoom());	
+
+			google.maps.event.addListener(map, 'idle', function(event){
+				if (getDistance(map.getCenter(), marker.getPosition())>15000) {
+					$("#content").hide();
+				}
+			});
+		
+	}
+
+	//FUNCTION ZOOM MARKER
+	function smoothZoom (map, max, cnt) {
+		if (cnt >= max) {
+			return;
+		}
+		else {
+			var z = google.maps.event.addListener(map, 'zoom_changed', function(event){
+			google.maps.event.removeListener(z);
+			smoothZoom(map, max, cnt + 1);
+			$('#content').show(200);
 		});
 		
-		//ZOOM ON MARKER
-		 google.maps.event.addListener(marker, 'click', function() {
-    		map.panTo(marker.getPosition());
-    		smoothZoom(map, 7, map.getZoom());	
-  		});
-  		
-  		//FUNCTION ZOOM MARKER
-  		function smoothZoom (map, max, cnt) {
-    		if (cnt >= max) {
-            	return;
-        	}
-    		else {
-        		z = google.maps.event.addListener(map, 'zoom_changed', function(event){
-            	google.maps.event.removeListener(z);
-            	smoothZoom(map, max, cnt + 1);
-            	$('#fenetre').show(200);
-        	});
-        	
-        	if (map.getZoom() == cnt ) {
-        		$('#fenetre').show(200);
-        	} else {
-        		$('#fenetre').hide();	
-        	}
-  	
-        	setTimeout(function(){map.setZoom(cnt)}, 100); 
-    		}
+		if (map.getZoom() == cnt ) {
+			$('#content').show(200);
+		} else {
+			$('#content').hide();	
 		}
-		
 
-		
-    }
-    
+		setTimeout(function(){map.setZoom(cnt)}, 100); 
+		}
+	}
 
-
-
-	google.maps.event.addDomListener(window, 'load', initialize);
+	window.onload = loadScript;
