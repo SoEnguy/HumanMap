@@ -2,22 +2,34 @@
   "Zone": [
         {
           "type":"epidemie",
-          "titre":"Ebola",          
-          "zone": {"coordCentre" : {"lat":40,"lng":40},"rayon":50000 },
-          "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+          "titre":"Ebola en Guinée",          
+          "zone": {"coordCentre" : {"lat":1.72,"lng":10.95},"rayon":500 000 },
+          "info":"Début d'expansion du virus d'Ebola"
+        },
+		{
+          "type":"epidemie",
+          "titre":"Ebola en Sierra Leone",          
+          "zone": {"coordCentre" : {"lat":8.82,"lng":-12.04},"rayon":250 000 },
+          "info":"Pays touché par le virus Ebola"
         },
         {
           "type":"conflit",
-          "titre":"Guerre Civil",         
-          "zone": {"coordCentre" : {"lat":30,"lng":30},"rayon":100000 },
-          "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+          "titre":"Guerre civile en Syrie",         
+          "zone": {"coordCentre" : {"lat":34.73,"lng":36.76},"rayon":500 000 },
+          "info":"Conflit armée par le dictateur Bachar el-Assad."
+        },
+		{
+          "type":"conflit",
+          "titre":"Conflit armée en Ukraine",         
+          "zone": {"coordCentre" : {"lat":48.00,"lng":37.97},"rayon": 200 000},
+          "info":"Conflit armée dans la région de Donetsk entre les pro-russe et les pro-ukrainien."
         }
       ],
   "Marker": [
         {
           "type":"refugee",
-          "titre":"Camps de par là",
-          "coordMarker":{"lat":40,"lng":0},
+          "titre":"Camp de Dharamsala",
+          "coordMarker":{"lat":32.21,"lng":76.32},
           "personnes": [
                         {
                           "nom": "laporte",
@@ -34,12 +46,46 @@
                           "prenom":"jean",
                           "dateNaissance":"12/12/12"
                         }],
-         "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+         "info":"Camp pour réfugié Tibétain en 1960, avec la cessation de pouvoir du 14eme dalaï-lama. "
         },
+		{
+			"type":"refugee",
+			"titre":"Camp de Zaatari",
+			"coordMarker":{"lat":32.33,"lng":36.26},
+			"personnes": [
+						{
+						  "nom": "laporte",
+						  "prenom":"jean",
+						  "dateNaissance":"12/12/12"
+						},
+						{
+						  "nom": "laporte",
+						  "prenom":"jean",
+						  "dateNaissance":"12/12/12"
+						}],
+			"info":"Situé en Jordanie à l'est de Mafraq, composé de réfugié syrien."
+		},
+		{
+			"type":"refugee",
+			"titre":"Camp de Dadaab",
+			"coordMarker":{"lat":0.10,"lng":40.31},
+			"personnes": [
+						{
+						  "nom": "laporte",
+						  "prenom":"jean",
+						  "dateNaissance":"12/12/12"
+						},
+						{
+						  "nom": "laporte",
+						  "prenom":"jean",
+						  "dateNaissance":"12/12/12"
+						}],
+			"info":"Ensemble de camps sur une zone d'environ 50km."
+		},
         {
           "type":"syringe",
-          "titre":"Centre de par là",
-          "coordMarker":{"lat":0,"lng":0},
+          "titre":"Centre de Qardho",
+          "coordMarker":{"lat":9.50,"lng":49.08},
           "personnes": [
                         {
                           "nom": "laporte",
@@ -56,12 +102,34 @@
                           "prenom":"jean",
                           "dateNaissance":"12/12/12"
                         }],
-         "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+         "info":"Campagne de vaccination pour les enfants de somalie, dont 26% seulement sont vaccinés."
+        },
+		{
+          "type":"syringe",
+          "titre":"Centre de Dadaab",
+          "coordMarker":{"lat":0.10,"lng":40.31},
+          "personnes": [
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        }],
+         "info":"Vaccin de vitamine A et de déparasitage."
         },
         {
           "type":"hospital",
-          "titre":"Hopital de par là",
-          "coordMarker":{"lat":0,"lng":40},
+          "titre":"Hopital de New Delhi",
+          "coordMarker":{"lat":28.65,"lng":77.12},
           "personnes": [
                         {
                           "nom": "laporte",
@@ -78,6 +146,28 @@
                           "prenom":"jean",
                           "dateNaissance":"12/12/12"
                         }],
-         "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+         "info":"Hopital pouvant donner des vaccins contre l'ebola."
+        },
+		{
+          "type":"hospital",
+          "titre":"Hopital de Lima",
+          "coordMarker":{"lat":-12.04,"lng":-77.04},
+          "personnes": [
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        }],
+         "info":"Hopital de soin destiné au plus pauvres et démunis."
         }]
 }
