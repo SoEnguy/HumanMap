@@ -127,13 +127,13 @@ function initialize() {
         		z = google.maps.event.addListener(map, 'zoom_changed', function(event){
             	google.maps.event.removeListener(z);
             	smoothZoom(map, max, cnt + 1);
-            	$('#fenetre').show(200);
+            	$('#content').show(200);
         	});
         	
         	if (map.getZoom() == cnt ) {
-        		$('#fenetre').show(200);
+        		$('#content').show(200);
         	} else {
-        		$('#fenetre').hide();	
+        		$('#content').hide();	
         	}
   	
         	setTimeout(function(){map.setZoom(cnt)}, 100); 
