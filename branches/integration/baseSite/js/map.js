@@ -1,5 +1,4 @@
 function initialize() {
-	console.log("tutu");
       	//FIRST MAP
         var mapOptions = {
           center: { lat: 0, lng: 0},
@@ -11,7 +10,7 @@ function initialize() {
         //POSITION EUROPE
         var myLatlngEu = new google.maps.LatLng(52.504540, 11.781136);
         //POSITION AMERIQUE
-        var myLatlngAm = new google.maps.LatLng(29.247635, -98.678017);
+        var myLatlngAm = new google.maps.LatLng(20.921674, -80.999700);
         //POSITION ASIE
         var myLatlngAs = new google.maps.LatLng(36.939557, 90.349243);
         //POSITION OCEANIE
@@ -33,19 +32,19 @@ function initialize() {
         }).fadeIn(200);
         
         //ZOOM AMERIQUE ONCLICK
-        $('#europe').click(function(){
-        	map.setZoom(4);
+        $('#amerique').click(function(){
+        	map.setZoom(3.5);
 			map.setCenter(myLatlngAm);
         }).fadeIn(200);
         
         //ZOOM ASIE ONCLICK
-        $('#europe').click(function(){
+        $('#asie').click(function(){
         	map.setZoom(4);
 			map.setCenter(myLatlngAs);
         }).fadeIn(200);
         
         //ZOOM OCEANIE ONCLICK
-        $('#europe').click(function(){
+        $('#oceanie').click(function(){
         	map.setZoom(4);
 			map.setCenter(myLatlngOc);
         }).fadeIn(200);
@@ -82,9 +81,7 @@ function initialize() {
         	} else {
         		$('#fenetre').hide();	
         	}
-        	//console.log(cnt);
-        	
-        		
+  	
         	setTimeout(function(){map.setZoom(cnt)}, 100); 
     		}
 		}
@@ -92,5 +89,4 @@ function initialize() {
 		
     }
      initialize();
-     console.log("topto");
-	//google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initialize);
