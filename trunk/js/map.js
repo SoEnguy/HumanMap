@@ -39,6 +39,8 @@ function initialize() {
 						$('#content').hide(200);
 					}
 				});	
+				
+				
 				  	
 				  map.setCenter(pos);
 				}, function() {
@@ -160,6 +162,7 @@ function initialize() {
 			map.setCenter(myLatlngOc);
         }).fadeIn(200);
 
+	
         genMarkers(map);
         genZone(map);
            		
