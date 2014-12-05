@@ -65,23 +65,6 @@
 						}],
 			"info":"Situé en Jordanie à l'est de Mafraq, composé de réfugié syrien."
 		},
-		{
-			"type":"refugee",
-			"titre":"Camp de Dadaab",
-			"coordMarker":{"lat":0.10,"lng":40.31},
-			"personnes": [
-						{
-						  "nom": "laporte",
-						  "prenom":"jean",
-						  "dateNaissance":"12/12/12"
-						},
-						{
-						  "nom": "laporte",
-						  "prenom":"jean",
-						  "dateNaissance":"12/12/12"
-						}],
-			"info":"Ensemble de camps sur une zone d'environ 50km."
-		},
         {
           "type":"syringe",
           "titre":"Centre de Qardho",
