@@ -29,15 +29,6 @@ function initialize() {
 					  title: 'Your current position'
 				  });	
 
-				google.maps.event.addListener(map, 'zoom_changed', function(event){
-					var zoomActu = map.getZoom();
-					if (zoomActu >= 6) {
-						$('#content').show(200);
-					} else if (zoomActu < 6) {
-						$('#content').hide(200);
-					}
-				});	
-				  	
 				  map.setCenter(pos);
 				}, function() {
 				  handleNoGeolocation(true);
@@ -201,17 +192,13 @@ function initialize() {
     	fillOpacity: 0.35,
     	map: map,
     	center: latLng,
-    	radius: radius
+    	radius: radius,
+    	title: info
     };
-
-	$("#content").html(info);
-
-    var infowindow = new google.maps.InfoWindow({
-	   content: info
-    });
 
     var circle = new google.maps.Circle(zone);
     google.maps.event.addListener(circle, 'click', function() {
+    	$("#content").html(circle.title);
     	zoomZone(map, circle);
     });
         
@@ -230,13 +217,16 @@ function initialize() {
 	    var mark = new google.maps.Marker({
 			position: latLng,
 			map: map,
-			icon : icon
+			icon : icon,
+			title : info
 	    });
 	    
-		$("#content").html(info);
+		
 
 	    google.maps.event.addListener(mark, 'click', function() {
+	    	$("#content").html(mark.title);
 			zoomMarker(map, mark);
+
 	    });
 	}
 
@@ -269,42 +259,36 @@ function initialize() {
 	function zoomMarker(map, marker){
 		map.panTo(marker.getPosition());
 		smoothZoom(map, 7, map.getZoom());	
-
 		google.maps.event.addListener(map, 'idle', function(event){
-			if (getDistance(map.getCenter(), marker.getPosition())>15000) {
-				$("#content").hide();
-			}
+				var zoomActu = map.getZoom();
+				if (zoomActu >= 6) {
+				} else if (zoomActu < 7) {
+					$('#content').hide();
+				}
 		});
 	}
 
 	function zoomZone(map, zone){
 		map.panTo(zone.getCenter());
 		smoothZoom(map, 7, map.getZoom());	
-
 		google.maps.event.addListener(map, 'idle', function(event){
-			if (getDistance(map.getCenter(), zone.getCenter())>15000) {
-				$("#content").hide();
-			}
+				var zoomActu = map.getZoom();
+				if (zoomActu >= 6) {
+				} else if (zoomActu < 7) {
+					$('#content').hide(200);
+				}
 		});
 	}
 
 	//FUNCTION ZOOM MARKER
 	function smoothZoom (map, max, cnt) {
 		if (cnt >= max) {
+			$('#content').show(200);
 			return;
 		}
 		else {
-			var z = google.maps.event.addListener(map, 'zoom_changed', function(event){
-			google.maps.event.removeListener(z);
+			setTimeout(function(){map.setZoom(cnt)}, 100); 
 			smoothZoom(map, max, cnt + 1);
-			$('#content').show(200);
-		});
-		if (map.getZoom() == cnt ) {
-			$('#content').show(200);
-		} else {
-			$('#content').hide();	
-		}
-		setTimeout(function(){map.setZoom(cnt)}, 100); 
 		}
 	}
 
