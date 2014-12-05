@@ -6,6 +6,7 @@
     <title>Human Map</title>
     <link rel="stylesheet" href="stylesheets/app.css" />
     <link rel="stylesheet" href="stylesheets/modif.css">
+    <link rel="icon" href="favicon.ico" />
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
   <body>
@@ -49,7 +50,7 @@
       </div>
     <!-- ******************* JOYRIDE ********************************* -->
       <!-- At the bottom of your page but inside of the body tag -->
-        <ol class="joyride-list" data-joyride>
+        <ol class="joyride-list" data-joyride data-options="cookieMonster:true cookieName=Joyride cookieExpire=365">
           <li data-text="Suivant" data-options="prev_button: false">
             <p>Bienvenue sur HumanMap</p>
           </li>
@@ -73,9 +74,9 @@
     <script src="js/map.js"></script>
     <script>
     if (window.matchMedia("(min-width: 600px)").matches) {
-  $(document).foundation('joyride', 'start');
-}
-    
+
+    $(document).foundation('joyride','start');
+    }
   </script>
   </body>
 </html>
