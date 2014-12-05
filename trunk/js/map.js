@@ -1,5 +1,6 @@
 function initialize() {
 		var map;
+		var pos;
       	//MAP OPTIONS
         var mapOptions = {
 			maxZoom: 12,
@@ -16,7 +17,7 @@ function initialize() {
 		  if(navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 				
-				  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				  pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				  
 				  var infowindow = new google.maps.InfoWindow({
 					map: map,
