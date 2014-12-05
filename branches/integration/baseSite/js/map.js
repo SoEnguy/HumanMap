@@ -110,11 +110,11 @@ function initialize() {
         }).fadeIn(200);
            
         //POSITION MARKER
-        //var myLatlng = new google.maps.LatLng(52.504540, 11.781136);
+        var myLatlng = new google.maps.LatLng(52.504540, 11.781136);
         
         //CREATE MARKER
      	var marker = new google.maps.Marker({
-    		position: pos,//myLatlng,
+    		position: myLatlng,
     		map: map,
 		});
 		
@@ -177,4 +177,14 @@ function initialize() {
 	  return d; // returns the distance in meter
 	};
 
-	google.maps.event.addDomListener(window, 'load', initialize);
+	//google.maps.event.addDomListener(window, 'load', initialize);
+	
+	function loadScript() {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+		  'callback=initialize';
+		document.body.appendChild(script);
+	}
+
+	window.onload = loadScript;
