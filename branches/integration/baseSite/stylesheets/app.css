@@ -6189,3 +6189,36 @@ blockquote p {
     display: inherit !important;
   }
 }
+/* line 21, ../scss/app.scss */
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* line 25, ../scss/app.scss */
+.top-bar {
+  z-index: 3;
+}
+
+@media only screen and (min-width: 40.063em) {
+  /* line 30, ../scss/app.scss */
+  #content {
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
+@media only screen and (max-width: 40em) {
+  /* line 41, ../scss/app.scss */
+  #content {
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}

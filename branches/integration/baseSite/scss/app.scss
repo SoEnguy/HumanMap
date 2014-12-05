@@ -16,3 +16,33 @@
   "foundation/components/reveal",
   "foundation/components/top-bar",
   "foundation/components/type";
+
+
+html, body, #map-canvas { height: 100%; margin: 0; padding: 0; position: relative;}
+
+
+
+.top-bar{
+	z-index:3;
+}
+
+@media #{$medium-up}    { 
+#content { 
+	display:none;
+	position: absolute;
+	top : 200px;
+	left: 20px;
+	background-color: rgba(255,255,255,0.9);
+}
+
+ }
+
+ @media #{$small-only}   {
+#content { 
+	display:none;
+	position: absolute;
+	top : 200px;
+	left: 0px;
+	background-color: rgba(255,255,255,0.9);
+}
+  }

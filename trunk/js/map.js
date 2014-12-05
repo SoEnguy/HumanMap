@@ -1,5 +1,6 @@
 function initialize() {
 		var map;
+		var pos;
       	//MAP OPTIONS
         var mapOptions = {
 			maxZoom: 12,
@@ -7,6 +8,7 @@ function initialize() {
 			zoom: 4,
 			keyboardShorcuts: true,
 			panControl: true,
+			zoomControl: false,
 			scrollwheel: true,
 			streetViewControl: false,
 			mapTypeId: "roadmap"
@@ -16,7 +18,7 @@ function initialize() {
 		  if(navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 				
-				  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				  pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				  
 				  var infowindow = new google.maps.InfoWindow({
 					map: map,
