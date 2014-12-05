@@ -1,15 +1,15 @@
 {
   "Zone": [
         {
-          "type":"Epidemie",
+          "type":"epidemie",
           "titre":"Ebola",          
-          "zone": {"coordCentre" : {"lat":150,"lng":150},"rayon":50 },
+          "zone": {"coordCentre" : {"lat":40,"lng":40},"rayon":50000 },
           "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
         },
         {
-          "type":"Conflit",
+          "type":"conflit",
           "titre":"Guerre Civil",         
-          "zone": {"coordCentre" : {"lat":150,"lng":150},"rayon":30 },
+          "zone": {"coordCentre" : {"lat":30,"lng":30},"rayon":100000 },
           "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
         }
       ],
