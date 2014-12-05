@@ -122,6 +122,12 @@ function initialize() {
 		 google.maps.event.addListener(marker, 'click', function() {
     		map.panTo(marker.getPosition());
     		smoothZoom(map, 7, map.getZoom());	
+
+    		google.maps.event.addListener(map, 'idle', function(event){
+            	if (getDistance(map.getCenter(), marker.getPosition())>15000) {
+            		$("#content").hide();
+            	}
+        	});
   		});
   		
   		//FUNCTION ZOOM MARKER
@@ -146,11 +152,29 @@ function initialize() {
     		}
 		}
 		
+		google.maps.event.addListener(map, 'zoom_changed', function(event){
+            	var zoomActu = map.getZoom();
+            	if (zoomActu >= 6) {
+            		$('#content').show(200);
+            	} else if (zoomActu < 6) {
+            		$('#content').hide(200);
+            	}
+        	});	
+   	}
 
-		
-    }
-    
 
-
+   	//Fonction d'haversine permettant le calcul de distance
+	var rad = function(x) {
+	  return x * Math.PI / 180;
+	};
+   	var getDistance = function(p1, p2) {
+	  	var R = 6378137, // Earth’s mean radius in meter
+	  		dLat = rad(p2.lat() - p1.lat()),
+	  		dLong = rad(p2.lng() - p1.lng()),
+	  		a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) * Math.sin(dLong / 2) * Math.sin(dLong / 2),
+	  		c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
+	  		d = R * c;
+	  return d; // returns the distance in meter
+	};
 
 	google.maps.event.addDomListener(window, 'load', initialize);
