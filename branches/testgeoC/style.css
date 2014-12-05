@@ -1,0 +1,12 @@
+html, body, #map-canvas { height: 100%; margin: 0; padding: 0; position: relative;}
+
+h1 {display: inline-block;}
+
+#fenetre { 
+	display:none;
+	width: 200px;
+	position: absolute;
+	top : 200px;
+	left: 200px;
+	background-color: white;
+}
