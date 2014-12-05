@@ -169,5 +169,27 @@
                           "dateNaissance":"12/12/12"
                         }],
          "info":"Hopital de soin destiné au plus pauvres et démunis."
+        },
+        {
+          "type":"syringe",
+          "titre":"Centre de Freetown",
+          "coordMarker":{"lat":8.369744,"lng":-13.201},
+          "personnes": [
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        }],
+         "info":"Centre d'accompagnement d'Ebola de Freetown"
         }]
 }
