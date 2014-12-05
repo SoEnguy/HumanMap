@@ -1,9 +1,63 @@
 function initialize() {
+
+		var map;
+
       	//FIRST MAP
         var mapOptions = {
-          center: { lat: 0, lng: 0},
-          zoom: 3
+			maxZoom: 12,
+			minZoom: 4,
+			zoom: 4,
+			keyboardShorcuts: true,
+			panControl: true,
+			scrollwheel: true,
+			streetViewControl: false,
+			mapTypeId: "hybrid"
         };
+		
+		// GEOLOCALISATION
+		  if(navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+				  pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				 // var pos = new google.maps.LatLng(50, 50);
+
+				  var infowindow = new google.maps.InfoWindow({
+					map: map,
+					position: pos//,
+					//content: '{'+position.coords.latitude+','+position.coords.longitude+'}'
+				  });
+				  
+				  var marker = new google.maps.Marker({
+					  position: pos,
+					  map: map,
+					  title: 'Your current position'
+				  });		
+				  map.setCenter(pos);
+				}, function() {
+				  handleNoGeolocation(true);
+				});
+		  } else {
+			// Browser doesn't support Geolocation
+			handleNoGeolocation(false);
+		  }
+		  
+		  function handleNoGeolocation(errorFlag) {
+			  if (errorFlag) {
+				var content = 'Error: The Geolocation service failed.';
+			  } else {
+				var content = 'Error: Your browser doesn\'t support geolocation.';
+			  }
+
+			  var options = {
+				map: map,
+				position: new google.maps.LatLng(60, 105),
+				content: content
+			  };
+
+			  var infowindow = new google.maps.InfoWindow(options);
+			  map.setCenter(options.position);
+			}
+
+		 
         
         //POSITION AFRIQUE
         var myLatlngAf = new google.maps.LatLng(5.233345, 30.463906);
@@ -17,7 +71,7 @@ function initialize() {
         var myLatlngOc = new google.maps.LatLng(-24.440290, 144.465183);
         
         //LOAD MAP
-        var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+         map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
         
         //ZOOM AFRIQUE ONCLICK
         $('#afrique').click(function(){
@@ -86,7 +140,11 @@ function initialize() {
     		}
 		}
 		
+
 		
     }
-     initialize();
+    
+
+
+
 	google.maps.event.addDomListener(window, 'load', initialize);
