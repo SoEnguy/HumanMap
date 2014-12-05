@@ -9,7 +9,7 @@ function initialize() {
 			panControl: true,
 			scrollwheel: true,
 			streetViewControl: false,
-			mapTypeId: "hybrid"
+			mapTypeId: "roadmap"
         };
 		
 		// GEOLOCALISATION
@@ -159,6 +159,7 @@ function initialize() {
         }).fadeIn(200);
 
         genMarkers(map);
+        genZone(map);
            		
    	}
 
@@ -172,10 +173,54 @@ function initialize() {
    		});
    	}
 
+   	function genZone(map){
+   		var promise = initPromise();
+
+   		promise.done(function(data){
+   			$.each(data.Zone, function(index, element){
+   				drawZone(map, element.type, element.zone.coordCentre.lat, element.zone.coordCentre.lng, element.zone.rayon ,element.info);
+   			});
+   		});
+   	}
+
+   	function drawZone(map,type,lat,lng,radius,info){
+    latLng = new google.maps.LatLng(lat,lng);
+    
+    if(type == "epidemie"){
+	   color = '#FFFF00';
+    }
+    if(type == "conflit"){
+	   color = '#FF0000';
+    }
+
+    var zone = {
+    	strokeColor: color,
+    	strokeOpacity: 0.8,
+    	strokeWeight: 2,
+    	fillColor: color,
+    	fillOpacity: 0.35,
+    	map: map,
+    	center: latLng,
+    	radius: radius
+    };
+
+	$("#content").html(info);
+
+    var infowindow = new google.maps.InfoWindow({
+	   content: info
+    });
+
+    var circle = new google.maps.Circle(zone);
+    google.maps.event.addListener(circle, 'click', function() {
+    	zoomZone(map, circle);
+    });
+        
+}
+
    	function drawMarker(map, type, lat, lng, info){
 	    latLng = new google.maps.LatLng(lat,lng);
 	    var icon = new google.maps.MarkerImage(
-			"../image/"+type+".png",
+			"./image/"+type+".png",
 			null, /* size is determined at runtime */
 			null, /* origin is 0,0 */
 			null, /* anchor is bottom center of the scaled image */
@@ -222,16 +267,25 @@ function initialize() {
 
 	//ZOOM ON MARKER
 	function zoomMarker(map, marker){
-		
 		map.panTo(marker.getPosition());
 		smoothZoom(map, 7, map.getZoom());	
 
-			google.maps.event.addListener(map, 'idle', function(event){
-				if (getDistance(map.getCenter(), marker.getPosition())>15000) {
-					$("#content").hide();
-				}
-			});
-		
+		google.maps.event.addListener(map, 'idle', function(event){
+			if (getDistance(map.getCenter(), marker.getPosition())>15000) {
+				$("#content").hide();
+			}
+		});
+	}
+
+	function zoomZone(map, zone){
+		map.panTo(zone.getCenter());
+		smoothZoom(map, 7, map.getZoom());	
+
+		google.maps.event.addListener(map, 'idle', function(event){
+			if (getDistance(map.getCenter(), zone.getCenter())>15000) {
+				$("#content").hide();
+			}
+		});
 	}
 
 	//FUNCTION ZOOM MARKER
@@ -245,13 +299,11 @@ function initialize() {
 			smoothZoom(map, max, cnt + 1);
 			$('#content').show(200);
 		});
-		
 		if (map.getZoom() == cnt ) {
 			$('#content').show(200);
 		} else {
 			$('#content').hide();	
 		}
-
 		setTimeout(function(){map.setZoom(cnt)}, 100); 
 		}
 	}
