@@ -1,1 +1,10 @@
 html, body, #map-canvas { height: 100%; margin: 0; padding: 0; position: relative;}
+#content{
+	position: absolute;
+	top:60px;
+	z-index:2;
+}
+
+.top-bar{
+	z-index:3;
+}
