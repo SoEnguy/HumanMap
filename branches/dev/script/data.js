@@ -73,16 +73,24 @@ function addPersonOnMarkerToJson(promise, id, xnom, xprenom, xdateNaissance, xda
 
 //exemple
 //addPersonOnMarkerToJson(promise, 0, "michel", "michel", "20/08/1980", "20/11/2014");
+var zones;
 
-function getAllZones(promise){
+function getAllZones(promise, zones){
+  zones = Array();
   promise.done(function(data){
     $.each(data.Zone, function(index, zone){
-        console.log(zone);
-      });
+        var obj = new Object();
+        obj.type = zone.type;
+        obj.titre = zone.titre;
+        obj.zone = zone.zone;
+        obj.info = zone.info;
+
+        zones.push(obj);
+    });
   });
 }
-
 getAllZones(promise);
+console.log(JSON.stringify(zones[0]));
 
 // function getZone(promise, id){
 //   var obj;
