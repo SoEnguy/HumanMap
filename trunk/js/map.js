@@ -8,6 +8,7 @@ function initialize() {
 			zoom: 4,
 			keyboardShorcuts: true,
 			panControl: true,
+			zoomControl: false,
 			scrollwheel: true,
 			streetViewControl: false,
 			mapTypeId: "roadmap"
