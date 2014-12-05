@@ -110,11 +110,11 @@ function initialize() {
         }).fadeIn(200);
            
         //POSITION MARKER
-        var myLatlng = new google.maps.LatLng(52.504540, 11.781136);
+        //var myLatlng = new google.maps.LatLng(52.504540, 11.781136);
         
         //CREATE MARKER
      	var marker = new google.maps.Marker({
-    		position: myLatlng,
+    		position: pos,//myLatlng,
     		map: map,
 		});
 		
