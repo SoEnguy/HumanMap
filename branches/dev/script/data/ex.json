@@ -1,0 +1,83 @@
+{
+  "Zone": [
+        {
+          "type":"Epidemie",
+          "titre":"Ebola",          
+          "zone": {"coordCentre" : {"x":150,"y":150},"rayon":50 },
+          "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+        },
+        {
+          "type":"Conflit",
+          "titre":"Guerre Civil",         
+          "zone": {"coordCentre" : {"x":150,"y":150},"rayon":30 },
+          "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+        }
+      ],
+  "Marker": [
+        {
+          "type":"Camp de Refugier",
+          "titre":"Camps de par là",
+          "coordMarker":{"x":150,"y":150},
+          "personnes": [
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        }],
+         "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+        },
+        {
+          "type":"Centre de Traitement",
+          "titre":"Centre de par là",
+          "coordMarker":{"x":150,"y":150},
+          "personnes": [
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        }],
+         "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+        },
+        {
+          "type":"Hopital",
+          "titre":"Hopital de par là",
+          "coordMarker":{"x":150,"y":150},
+          "personnes": [
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        },
+                        {
+                          "nom": "laporte",
+                          "prenom":"jean",
+                          "dateNaissance":"12/12/12"
+                        }],
+         "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+        }]
+}
