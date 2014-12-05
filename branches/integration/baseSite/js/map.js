@@ -1,6 +1,7 @@
 function initialize() {
 
 		var map;
+		var pos;
 
       	//FIRST MAP
         var mapOptions = {
@@ -72,6 +73,11 @@ function initialize() {
         
         //LOAD MAP
          map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+		 
+		 //POSITION ACTUELLE ONCLICK
+		 $('#current').click(function(){
+			map.setCenter(pos);
+		 });
         
         //ZOOM AFRIQUE ONCLICK
         $('#afrique').click(function(){
