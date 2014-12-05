@@ -46,10 +46,12 @@ function initMapOpt(map){
 
 function drawZone(map,type,lat,lng,radius,info){
     latLng = new google.maps.LatLng(lat,lng);
-		 	if(type == "epidemie"){
-		 	    color = '#FFFF00'
-			}
-    
+    if(type == "epidemie"){
+	color = '#FFFF00'
+    }
+    if(type == "conflict"){
+	color = '#FF0000'
+    }
     var conflictZone = {
 	strokeColor: color,
 	strokeOpacity: 0.8,
@@ -119,7 +121,7 @@ function initialize() {
         
         //LOAD MAP
         var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-        
+        initMapOpt(map);
         //ZOOM AFRIQUE ONCLICK
         $('#afrique').click(function(){
         	map.setZoom(4);
@@ -189,7 +191,6 @@ function initialize() {
     		}
 		}
 		
-    initMapOpt(map);
     }
      
 	google.maps.event.addDomListener(window, 'load', initialize);
