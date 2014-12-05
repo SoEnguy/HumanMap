@@ -1,4 +1,5 @@
 function initialize() {
+	console.log("tutu");
       	//FIRST MAP
         var mapOptions = {
           center: { lat: 0, lng: 0},
@@ -90,5 +91,6 @@ function initialize() {
 		
 		
     }
-     
-	google.maps.event.addDomListener(window, 'load', initialize);
+     initialize();
+     console.log("topto");
+	//google.maps.event.addDomListener(window, 'load', initialize);
