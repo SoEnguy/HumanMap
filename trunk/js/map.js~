@@ -9,7 +9,7 @@ function initialize() {
 			panControl: true,
 			scrollwheel: true,
 			streetViewControl: false,
-			mapTypeId: "roadmap"
+			mapTypeId: "hybrid"
         };
 		
 		// GEOLOCALISATION
