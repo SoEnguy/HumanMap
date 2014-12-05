@@ -32,8 +32,8 @@ function addZoneToJson(promise, xtype, xtitre, coordCentreZoneX, coordCentreZone
 //exemple
 //addZoneToJson(promise,31,"Epidemie","Ebola",150,150,50,"lorem front");
 
-function addMarkerToJson(promise, xtype, xtitre, coordMarkerX, coordMarkerY, xpersonnes, xinfo){
-    var obj = {type:xtype,titre:xtitre,coordMarker:{x:coordMarkerX,y:coordMarkerY},personnes:xpersonnes,info:xinfo}; 
+function addMarkerToJson(promise, xtype, xtitre, coordMarkerLat, coordMarkerLng, xpersonnes, xinfo){
+    var obj = {type:xtype,titre:xtitre,coordMarker:{lat:coordMarkerLat,lng:coordMarkerLng},personnes:xpersonnes,info:xinfo}; 
     promise.done(function(data){
         data.Marker.push(obj);
         var strData = JSON.stringify(data);
@@ -82,7 +82,7 @@ function getAllZones(promise){
   });
 }
 
-getAllZones(promise);
+//getAllZones(promise);
 
 // function getZone(promise, id){
 //   var obj;
